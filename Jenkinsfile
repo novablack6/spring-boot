@@ -45,11 +45,18 @@ pipeline {
             steps {
                 sh '${GRADLE} -v'
             }
-        }
-
-        stage('Compile') {
+        }  
+        
+        stage('Clean and Build') {
             steps {
-                sh '${GRADLE} clean testClasses'
+                sh '${GRADLE} clean build'
+            }
+        }
+        
+
+        stage('Compile Test') {
+            steps {
+                sh '${GRADLE} testClasses'
             }
         }
 
